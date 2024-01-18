@@ -4,12 +4,11 @@ const header = {
 };
 
 const about = {
-  // all the properties are optional - can be left empty or deleted
   name: "Rushal  Vaghani",
   role: "Full Stack Developer",
   description:
     "An energetic and passionate fresher, I'm actively seeking a challenging role as a Web Developer to apply theoretical knowledge acquired through academic projects, driven by an authentic passion for coding. Proficient in problem-solving and adept at crafting efficient, scalable code to meet project objectives, I am eager to contribute to dynamic projects, leveraging my programming skills.",
-  resume: "https://example.com",
+  resume: "https://drive.google.com/uc?export=download&id=1DzUDD2RaCFO5ju3FbUi8RVv4Fd5ZsAtW",
   social: {
     linkedin: "https://linkedin.com/in/rushal-vaghani-47835b1bb",
     github: "https://github.com/Vaghani-Rushal?tab=repositories",
@@ -17,8 +16,6 @@ const about = {
 };
 
 const projects = [
-  // projects can be added an removed
-  // if there are no projects, Projects section won't show up
   {
     name: "Weather Web - React",
     description:
