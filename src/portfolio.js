@@ -1,90 +1,96 @@
 const header = {
-  homepage: "/",
-  title: "RV.",
-};
+  homepage: '/',
+  title: 'RV.',
+}
 
 const about = {
-  name: "Rushal  Vaghani",
-  role: "Full Stack Developer",
+  name: 'Rushal Vaghani',
+  role: 'Senior Full Stack Developer',
   description:
-    "An energetic and passionate fresher, I'm actively seeking a challenging role as a Web Developer to apply theoretical knowledge acquired through academic projects, driven by an authentic passion for coding. Proficient in problem-solving and adept at crafting efficient, scalable code to meet project objectives, I am eager to contribute to dynamic projects, leveraging my programming skills.",
-  resume: "https://drive.google.com/file/d/1OmNgC9FXqnXwSDawiNaChWnSc4s3YLFF/view",
+    'I build production SaaS platforms, React Native apps, and AI-powered features for founders, agencies, and product teams. 2+ years shipping TypeScript, React, Node.js, React Native, Python and Rust — from $8K healthcare apps to Shopify integrations. Clean architecture, fast systems, ship things that matter.',
+  resume: 'https://drive.google.com/file/d/1OmNgC9FXqnXwSDawiNaChWnSc4s3YLFF/view',
   social: {
-    linkedin: "https://linkedin.com/in/rushal-vaghani-47835b1bb",
-    github: "https://github.com/Vaghani-Rushal?tab=repositories",
+    linkedin: 'https://linkedin.com/in/rushal-vaghani-47835b1bb',
+    github: 'https://github.com/Vaghani-Rushal',
   },
-};
+}
 
 const projects = [
   {
-    name: "Weather Web - React",
+    name: 'lansync-studio',
     description:
-      "Created web-application to get current and forcast weather status of search city, created using React.js ",
-    stack: ["React", "OpenWeatherMap-api", "rapid-api"],
-    sourceCode: "https://github.com/Vaghani-Rushal/weather-web-React.git",
-    livePreview: "https://weather-web-reactapp.netlify.app/",
+      'Developer tooling platform for managing LAN sync workflows. Built with TypeScript and modern toolchain for high-performance local dev environments.',
+    stack: ['TypeScript', 'Node.js', 'React', 'Vite'],
+    sourceCode: 'https://github.com/Vaghani-Rushal/lansync-studio',
+    livePreview: '',
   },
   {
-    name: "myFood - MERN",
+    name: 'job-os',
     description:
-      "Developed a MERN web application that allows users to browse a variety of food items, log in, sign up, manage their cart, and view their order history.",
-    stack: ["React", "Node.js", "Express.js", "MongoDB"],
-    sourceCode: "https://github.com/Vaghani-Rushal/myFood-mern.git",
-    livePreview: "https://myfood-mern.netlify.app",
+      'Full-stack job tracking OS — a productivity SaaS for managing job applications, pipelines, and statuses with a clean Kanban UI.',
+    stack: ['TypeScript', 'React', 'Node.js', 'MongoDB'],
+    sourceCode: 'https://github.com/Vaghani-Rushal/job-os',
+    livePreview: '',
   },
   {
-    name: "Todo - React",
+    name: 'myFood MERN',
     description:
-      "Created Todo webApplication using core react concepts and bootstrap library. ",
-    stack: ["React", "Bootstrap", "useContext"],
-    sourceCode: "https://github.com/Vaghani-Rushal/Todo-React.git",
-    livePreview: "https://todo-web-react.netlify.app",
+      'Full-stack food delivery web app — browse items, manage cart, order history, authentication. Live on Netlify.',
+    stack: ['React', 'Node.js', 'Express.js', 'MongoDB'],
+    sourceCode: 'https://github.com/Vaghani-Rushal/myFood-mern',
+    livePreview: 'https://myfood-mern.netlify.app',
   },
   {
-    name: "Online Forum - PHP",
+    name: 'Clinical RAG System',
     description:
-      "Created Online Forum using PHP MySQL as Backend and Bootstrap Library as Frontend that allows user to SignUp, Login, Logout and create new Threads or comments on Exist threads. ",
-    stack: ["PHP", "MySQL", "PHPMailer", "Bootstrap"],
-    sourceCode: "https://github.com/Vaghani-Rushal/Forum-PHP.git",
-    livePreview: "",
+      'AI-powered clinical document retrieval system using Retrieval-Augmented Generation (RAG). Built for a US healthcare client.',
+    stack: ['Python', 'FastAPI', 'LangChain', 'OpenAI'],
+    sourceCode: '',
+    livePreview: '',
   },
   {
-    name: "Myntra Clone - React",
+    name: 'AsgardBench',
     description:
-      "Created Mytra Clone using React and Redux concepts. It fetch the items from Rest api and display them to user. User Add anr Remove item from cart.",
-    stack: ["React", "Redux", "Bootstrap"],
-    sourceCode: "https://github.com/Vaghani-Rushal/Myntra-clone-Frontend.git",
-    livePreview: "",
+      'Performance benchmarking platform with frontend dashboard and backend data pipeline. Real-time metrics, charts, and reporting.',
+    stack: ['TypeScript', 'React', 'Node.js', 'HTML'],
+    sourceCode: '',
+    livePreview: '',
   },
   {
-    name: "News Web - React",
+    name: 'Shopify MERN Template',
     description:
-      "Developed React web application that uses newsapi to show news from different categories.",
-    stack: ["React", "Api", "Bootstrap"],
-    sourceCode: "https://github.com/Vaghani-Rushal/News-webapp-React.git",
-    livePreview: "",
+      'Production-ready Shopify app template using React, Node.js, Express, and MongoDB in a client/server structure.',
+    stack: ['JavaScript', 'React', 'Node.js', 'MongoDB'],
+    sourceCode: '',
+    livePreview: '',
   },
-];
+]
 
 const skills = [
-  "C",
-  "C++",
-  "Java (Basics)",
-  "Python (Basics)",
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "React",
-  "Node.js",
-  "Express.js",
-  "MongoDB",
-  "Bootstrap",
-  "PHP",
-  "MySQL",
-];
+  'TypeScript',
+  'JavaScript',
+  'Python',
+  'Rust',
+  'React',
+  'Next.js',
+  'React Native',
+  'Node.js',
+  'Express.js',
+  'FastAPI',
+  'MongoDB',
+  'PostgreSQL',
+  'Redis',
+  'Docker',
+  'AWS',
+  'Shopify',
+  'LangChain',
+  'OpenAI API',
+  'Git',
+  'Vite',
+]
 
 const contact = {
-  email: "vaghanirushal@gmail.com",
-};
+  email: 'vaghanirushal@gmail.com',
+}
 
-export { header, about, projects, skills, contact };
+export { header, about, projects, skills, contact }
