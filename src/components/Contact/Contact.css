@@ -1,4 +1,71 @@
+/* Contact Section */
 .contact {
-  padding-bottom: 3rem;
+  padding: 6rem 0 8rem;
   flex-direction: column;
+  gap: 0;
 }
+
+.contact.center {
+  align-items: center;
+  text-align: center;
+}
+
+.contact .section__title {
+  margin-bottom: 1.5rem;
+}
+
+.contact__desc {
+  color: #94a3b8;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+}
+
+.contact__email-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  color: #fff;
+  padding: 0.9rem 2.25rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(139,92,246,0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact__email-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 35px rgba(139,92,246,0.55);
+  color: #fff;
+}
+
+/* Shimmer on hover */
+.contact__email-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  background-size: 200%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.contact__email-link:hover::after {
+  opacity: 1;
+  animation: shimmer-contact 0.7s ease;
+}
+
+@keyframes shimmer-contact {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Light theme */
+.light .contact__desc { color: #475569; }
