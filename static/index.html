@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rushal Vaghani — Senior Full Stack Developer</title>
+<title>Rushal Vaghani â Senior Full Stack Developer</title>
 <meta name="description" content="Senior Full Stack Developer specializing in TypeScript, React, Node.js, React Native & AI. Building production SaaS platforms and healthcare apps.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,19 +44,19 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--c-bg);color:var(-
 a{text-decoration:none;color:inherit;transition:all .2s var(--ease)}
 img{max-width:100%;height:auto}
 
-/* ── CURSOR ── */
+/* ââ CURSOR ââ */
 #cursor{position:fixed;width:12px;height:12px;background:var(--c-purple);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s,opacity .3s;mix-blend-mode:difference}
 #cursor-ring{position:fixed;width:40px;height:40px;border:1.5px solid rgba(139,92,246,0.6);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .15s var(--ease),width .3s,height .3s,border-color .3s}
 body.cursor-hover #cursor{transform:translate(-50%,-50%) scale(2)}
 body.cursor-hover #cursor-ring{width:60px;height:60px;border-color:var(--c-cyan)}
 
-/* ── SCROLL PROGRESS ── */
+/* ââ SCROLL PROGRESS ââ */
 #scroll-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--grad-main);z-index:10000;transition:width .1s linear;border-radius:0 2px 2px 0;box-shadow:0 0 10px rgba(139,92,246,0.6)}
 
-/* ── CANVAS BACKGROUND ── */
+/* ââ CANVAS BACKGROUND ââ */
 #bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-/* ── NAV ── */
+/* ââ NAV ââ */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 0;transition:all .4s var(--ease)}
 nav.scrolled{background:rgba(2,2,9,0.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--c-border);padding:.75rem 0}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
@@ -72,12 +72,12 @@ nav.scrolled{background:rgba(2,2,9,0.85);backdrop-filter:blur(24px);-webkit-back
 .nav-menu-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
 .nav-menu-btn span{display:block;width:24px;height:2px;background:var(--c-muted);border-radius:1px;transition:all .3s var(--ease)}
 
-/* ── SECTIONS ── */
+/* ââ SECTIONS ââ */
 section{position:relative;z-index:1}
 .container{max-width:1200px;margin:0 auto;padding:0 2rem}
 
-/* ── HERO ── */
-#hero{min-height:100vh;display:flex;align-items:center;padding:6rem 0 4rem;position:relative;overflow:hidden}
+/* ââ HERO ââ */
+#hero{min-height:100vh;display:flex;align-items:center;padding:5rem 0 3rem;position:relative;overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
 .hero-left{display:flex;flex-direction:column;gap:1.5rem}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);border-radius:var(--r-full);width:fit-content;font-size:.8rem;font-weight:500;color:var(--c-purple2);animation:slideInLeft .6s var(--ease) both}
@@ -120,8 +120,8 @@ section{position:relative;z-index:1}
 .hero-float-2{bottom:15%;left:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(6,182,212,.12),transparent 70%);border-radius:50%;animation:floatAnim 8s ease-in-out infinite 2s}
 @keyframes floatAnim{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-20px) scale(1.05)}}
 
-/* ── ABOUT BENTO GRID ── */
-#about{padding:5rem 0}
+/* ââ ABOUT BENTO GRID ââ */
+#about{padding:3rem 0}
 .bento-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:1.25rem}
 .bento-card{background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--r);padding:1.75rem;position:relative;overflow:hidden;transition:all .4s var(--ease);cursor:default}
 .bento-card::before{content:'';position:absolute;inset:0;background:var(--grad-main);opacity:0;transition:opacity .4s var(--ease);border-radius:var(--r)}
@@ -148,9 +148,9 @@ section{position:relative;z-index:1}
 .card-glow{position:absolute;inset:-50%;background:radial-gradient(circle at 50% 50%,rgba(139,92,246,.08),transparent 60%);pointer-events:none;opacity:0;transition:opacity .4s;border-radius:50%}
 .bento-card:hover .card-glow{opacity:1}
 
-/* ── PROJECTS ── */
-#projects{padding:5rem 0}
-.section-header{text-align:center;margin-bottom:5rem}
+/* ââ PROJECTS ââ */
+#projects{padding:3rem 0}
+.section-header{text-align:center;margin-bottom:3rem}
 .section-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.15em;color:var(--c-purple2);margin-bottom:1rem;padding:.35rem .9rem;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);border-radius:var(--r-full)}
 .section-title{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;letter-spacing:-.03em}
 .section-title span{background:var(--grad-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -175,8 +175,8 @@ section{position:relative;z-index:1}
 .project-stack{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.25rem}
 .stack-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;padding:.2rem .55rem;border-radius:var(--r-full);background:rgba(6,182,212,.08);color:var(--c-cyan);border:1px solid rgba(6,182,212,.18)}
 
-/* ── SKILLS ── */
-#skills{padding:5rem 0}
+/* ââ SKILLS ââ */
+#skills{padding:3rem 0}
 .skills-container{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
 .skills-left{}
 .skills-intro{font-size:1.05rem;color:var(--c-muted);line-height:1.8;margin-bottom:2rem}
@@ -194,8 +194,8 @@ section{position:relative;z-index:1}
 .skill-chip{font-family:'JetBrains Mono',monospace;font-size:.78rem;padding:.4rem .9rem;border-radius:var(--r-full);background:var(--c-surface);border:1px solid var(--c-border);color:var(--c-muted);transition:all .25s var(--ease);cursor:default}
 .skill-chip:hover{background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.35);color:var(--c-purple2);transform:translateY(-2px) scale(1.04);box-shadow:0 4px 15px rgba(139,92,246,.15)}
 
-/* ── EXPERIENCE ── */
-#experience{padding:5rem 0}
+/* ââ EXPERIENCE ââ */
+#experience{padding:3rem 0}
 .timeline{position:relative;padding-left:2rem}
 .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--c-purple),var(--c-cyan),transparent);border-radius:1px}
 .timeline-item{position:relative;padding-left:2rem;padding-bottom:3.5rem}
@@ -206,12 +206,12 @@ section{position:relative;z-index:1}
 .timeline-company{font-size:.9rem;color:var(--c-muted);margin-bottom:1rem}
 .timeline-list{list-style:none;display:flex;flex-direction:column;gap:.6rem}
 .timeline-list li{font-size:.9rem;color:var(--c-muted);padding-left:1.25rem;position:relative;line-height:1.7}
-.timeline-list li::before{content:'▸';position:absolute;left:0;color:var(--c-purple);font-size:.75rem;top:.2rem}
+.timeline-list li::before{content:'â¸';position:absolute;left:0;color:var(--c-purple);font-size:.75rem;top:.2rem}
 .timeline-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
 .timeline-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;padding:.2rem .6rem;border-radius:var(--r-full);background:rgba(139,92,246,.08);color:var(--c-purple2);border:1px solid rgba(139,92,246,.15)}
 
-/* ── CONTACT ── */
-#contact{padding:5rem 0}
+/* ââ CONTACT ââ */
+#contact{padding:3rem 0}
 .contact-card{background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(6,182,212,.05));border:1px solid rgba(139,92,246,.2);border-radius:24px;padding:5rem 4rem;text-align:center;position:relative;overflow:hidden}
 .contact-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(139,92,246,.12),transparent 60%);pointer-events:none;border-radius:50%}
 .contact-title{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;letter-spacing:-.04em;margin-bottom:1rem}
@@ -222,39 +222,39 @@ section{position:relative;z-index:1}
 .contact-item{display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:var(--c-muted)}
 .contact-item i{color:var(--c-purple2)}
 
-/* ── FOOTER ── */
+/* ââ FOOTER ââ */
 footer{padding:2rem 0;border-top:1px solid var(--c-border);text-align:center}
 .footer-text{font-size:.85rem;color:var(--c-faint)}
 .footer-text a{color:var(--c-purple2);font-weight:500}
 .footer-text a:hover{text-decoration:underline}
 
-/* ── SCROLL TO TOP ── */
+/* ââ SCROLL TO TOP ââ */
 #scroll-top{position:fixed;bottom:2rem;right:2rem;width:48px;height:48px;border-radius:var(--r-sm);background:var(--grad-main);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 4px 20px rgba(139,92,246,.4);transition:all .3s var(--ease);z-index:999;opacity:0;transform:translateY(20px)}
 #scroll-top.visible{opacity:1;transform:translateY(0)}
 #scroll-top:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(139,92,246,.5)}
 
-/* ── SECTION TITLE ── */
+/* ââ SECTION TITLE ââ */
 .section-title-line{display:flex;align-items:center;gap:1rem;margin-bottom:.5rem}
 .stl-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--c-purple2);font-weight:600}
 .stl-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(139,92,246,.4),transparent)}
 
-/* ── ANIMATIONS ── */
+/* ââ ANIMATIONS ââ */
 @keyframes slideInLeft{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
 @keyframes slideInRight{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
 @keyframes slideInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal{opacity:0;transform:translateY(15px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
 .reveal.in{opacity:1;transform:none}
-.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal-left{opacity:0;transform:translateX(-15px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
 .reveal-left.in{opacity:1;transform:none}
-.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
 .reveal-right.in{opacity:1;transform:none}
 .delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}.delay-4{transition-delay:.4s}.delay-5{transition-delay:.5s}.delay-6{transition-delay:.6s}
 
-/* ── TYPEWRITER ── */
+/* ââ TYPEWRITER ââ */
 #typed-role{border-right:2px solid var(--c-purple2);padding-right:3px}
 
-/* ── GLITCH ── */
+/* ââ GLITCH ââ */
 .glitch{position:relative}
 .glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;background:var(--c-bg)}
 .glitch::before{color:#ec4899;animation:glitch1 4s infinite;clip-path:polygon(0 30%,100% 30%,100% 50%,0 50%)}
@@ -262,7 +262,7 @@ footer{padding:2rem 0;border-top:1px solid var(--c-border);text-align:center}
 @keyframes glitch1{0%,90%,100%{transform:none;opacity:0}92%{transform:translate(-2px,1px);opacity:.8}96%{transform:translate(2px,-1px);opacity:.8}}
 @keyframes glitch2{0%,92%,100%{transform:none;opacity:0}94%{transform:translate(2px,-1px);opacity:.8}98%{transform:translate(-2px,1px);opacity:.8}}
 
-/* ── MOBILE MENU ── */
+/* ââ MOBILE MENU ââ */
 @media(max-width:768px){
 .nav-links{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(2,2,9,.97);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;font-size:1.2rem}
 .nav-links.open{display:flex}
@@ -285,6 +285,11 @@ footer{padding:2rem 0;border-top:1px solid var(--c-border);text-align:center}
 .hero-stat strong{font-size:1.4rem}
 .projects-grid{grid-template-columns:1fr}
 }
+
+/* ── SCROLL HINT ── */
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--c-muted);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;animation:fadeIn 1s var(--ease) 1.5s both}
+.scroll-hint-line{width:1px;height:40px;background:linear-gradient(to bottom,transparent,var(--c-purple2));animation:scrollLine 2s ease-in-out infinite}
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 </style>
 </head><body>
 <div id="cursor"></div>
@@ -348,7 +353,7 @@ footer{padding:2rem 0;border-top:1px solid var(--c-border);text-align:center}
         <div class="hero-stats">
           <div class="hero-stat"><strong>2+</strong><span>Years Exp.</span></div>
           <div class="hero-stat"><strong>20+</strong><span>Projects</span></div>
-          <div class="hero-stat"><strong>1808★</strong><span>CodeChef</span></div>
+          <div class="hero-stat"><strong>1808â</strong><span>CodeChef</span></div>
           <div class="hero-stat"><strong>5+</strong><span>Clients</span></div>
         </div>
       </div>
@@ -369,7 +374,7 @@ footer{padding:2rem 0;border-top:1px solid var(--c-border);text-align:center}
             <div class="code-line"><span class="ln">4</span><span style="padding-left:1.5rem"><span class="prop">stack</span><span class="op">: [</span><span class="str">"TS"</span><span class="op">, </span><span class="str">"React"</span><span class="op">, </span><span class="str">"Node"</span><span class="op">],</span></span></div>
             <div class="code-line"><span class="ln">5</span><span style="padding-left:1.5rem"><span class="prop">ai</span><span class="op">: [</span><span class="str">"LangChain"</span><span class="op">, </span><span class="str">"OpenAI"</span><span class="op">],</span></span></div>
             <div class="code-line"><span class="ln">6</span><span style="padding-left:1.5rem"><span class="prop">mobile</span><span class="op">: </span><span class="str">"React Native"</span><span class="op">,</span></span></div>
-            <div class="code-line"><span class="ln">7</span><span style="padding-left:1.5rem"><span class="prop">status</span><span class="op">: </span><span class="str">"🟢 Open to Work"</span><span class="op">,</span></span></div>
+            <div class="code-line"><span class="ln">7</span><span style="padding-left:1.5rem"><span class="prop">status</span><span class="op">: </span><span class="str">"ð¢ Open to Work"</span><span class="op">,</span></span></div>
             <div class="code-line"><span class="ln">8</span><span style="padding-left:1.5rem"><span class="prop">location</span><span class="op">: </span><span class="str">"Surat, India"</span><span class="op">,</span></span></div>
             <div class="code-line"><span class="ln">9</span><span style="padding-left:1.5rem"><span class="prop">motto</span><span class="op">: </span><span class="str">"Ship fast. Build right."</span></span></div>
             <div class="code-line"><span class="ln">10</span><span class="op">}</span></div>
@@ -379,6 +384,11 @@ footer{padding:2rem 0;border-top:1px solid var(--c-border);text-align:center}
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-hint-line"></div>
+    <span>Scroll</span>
   </div>
 </section>
 
@@ -395,7 +405,7 @@ footer{padding:2rem 0;border-top:1px solid var(--c-border);text-align:center}
         <div class="card-glow"></div>
         <p class="bento-label">Who I am</p>
         <h3 class="bento-big-title">Senior Full Stack Developer building <span>production systems</span> that scale</h3>
-        <p class="bento-desc">I'm a results-driven developer with 2+ years of experience shipping real-world SaaS platforms, healthcare AI systems, React Native mobile apps, and Shopify integrations. I specialize in TypeScript, React, Node.js, Python and Rust — always prioritizing clean architecture, performance, and maintainability.<br><br>Currently shipping a $8K React + React Native healthcare app for a US client through Staycold Solution, while building open-source tooling on the side.</p>
+        <p class="bento-desc">I'm a results-driven developer with 2+ years of experience shipping real-world SaaS platforms, healthcare AI systems, React Native mobile apps, and Shopify integrations. I specialize in TypeScript, React, Node.js, Python and Rust â always prioritizing clean architecture, performance, and maintainability.<br><br>Currently shipping a $8K React + React Native healthcare app for a US client through Staycold Solution, while building open-source tooling on the side.</p>
         <div class="tech-grid" style="margin-top:1.5rem">
           <span class="tech-pill">TypeScript</span><span class="tech-pill">React</span><span class="tech-pill">Node.js</span><span class="tech-pill">React Native</span><span class="tech-pill">Python</span><span class="tech-pill">Rust</span><span class="tech-pill">FastAPI</span><span class="tech-pill">LangChain</span>
         </div>
@@ -409,33 +419,33 @@ footer{padding:2rem 0;border-top:1px solid var(--c-border);text-align:center}
       <div class="bento-card bento-c3 reveal delay-2">
         <div class="card-glow"></div>
         <p class="bento-label">CodeChef Rating</p>
-        <div class="bento-value">1808★</div>
+        <div class="bento-value">1808â</div>
         <p class="bento-value-sub">Competitive programmer</p>
       </div>
       <div class="bento-card bento-c4 reveal delay-1">
         <div class="card-glow"></div>
-        <span class="bento-icon">🏗️</span>
+        <span class="bento-icon">ðï¸</span>
         <p class="bento-label">Experience</p>
         <div class="bento-value">2+</div>
         <p class="bento-value-sub">Years shipping</p>
       </div>
       <div class="bento-card bento-c5 reveal delay-2">
         <div class="card-glow"></div>
-        <span class="bento-icon">🚀</span>
+        <span class="bento-icon">ð</span>
         <p class="bento-label">Projects</p>
         <div class="bento-value">20+</div>
         <p class="bento-value-sub">Shipped to prod</p>
       </div>
       <div class="bento-card bento-c6 reveal delay-3">
         <div class="card-glow"></div>
-        <span class="bento-icon">🤝</span>
+        <span class="bento-icon">ð¤</span>
         <p class="bento-label">Clients</p>
         <div class="bento-value">5+</div>
         <p class="bento-value-sub">Happy clients</p>
       </div>
       <div class="bento-card bento-c7 reveal delay-4">
         <div class="card-glow"></div>
-        <span class="bento-icon">🌍</span>
+        <span class="bento-icon">ð</span>
         <p class="bento-label">Location</p>
         <div style="font-size:1.1rem;font-weight:700;color:var(--c-text);margin-top:.25rem">Surat, India</div>
         <p class="bento-value-sub">UTC +05:30</p>
@@ -443,7 +453,9 @@ footer{padding:2rem 0;border-top:1px solid var(--c-border);text-align:center}
     </div>
   </div>
 </section>
-<!-- PROJECTS -->
+<!-- PR
+<div style="height:1px;background:linear-gradient(90deg,transparent,rgba(139,92,246,0.3),rgba(99,202,211,0.3),transparent);margin:0 2rem"></div>
+OJECTS -->
 <section id="projects">
   <div class="container">
     <div class="section-header reveal">
@@ -454,7 +466,7 @@ footer{padding:2rem 0;border-top:1px solid var(--c-border);text-align:center}
     </div>
     <div class="projects-grid">
       <div class="project-card reveal delay-1">
-        <div class="project-img">⚡</div>
+        <div class="project-img">â¡</div>
         <div class="project-overlay">
           <a href="https://github.com/Vaghani-Rushal/lansync-studio" target="_blank" class="overlay-link" title="GitHub"><i class="fab fa-github"></i></a>
         </div>
@@ -466,61 +478,61 @@ footer{padding:2rem 0;border-top:1px solid var(--c-border);text-align:center}
         </div>
       </div>
       <div class="project-card reveal delay-2">
-        <div class="project-img">🗂️</div>
+        <div class="project-img">ðï¸</div>
         <div class="project-overlay">
           <a href="https://github.com/Vaghani-Rushal/job-os" target="_blank" class="overlay-link" title="GitHub"><i class="fab fa-github"></i></a>
         </div>
         <div class="project-body">
-          <div class="project-meta"><span class="project-cat">SaaS · Productivity</span></div>
+          <div class="project-meta"><span class="project-cat">SaaS Â· Productivity</span></div>
           <h3 class="project-title">job-os</h3>
-          <p class="project-desc">Full-stack job tracking OS — a Kanban-style SaaS for managing job applications, pipelines and statuses with clean UX.</p>
+          <p class="project-desc">Full-stack job tracking OS â a Kanban-style SaaS for managing job applications, pipelines and statuses with clean UX.</p>
           <div class="project-stack"><span class="stack-tag">TypeScript</span><span class="stack-tag">React</span><span class="stack-tag">Node.js</span><span class="stack-tag">MongoDB</span></div>
         </div>
       </div>
       <div class="project-card reveal delay-3">
-        <div class="project-img">🍔</div>
+        <div class="project-img">ð</div>
         <div class="project-overlay">
           <a href="https://github.com/Vaghani-Rushal/myFood-mern" target="_blank" class="overlay-link" title="GitHub"><i class="fab fa-github"></i></a>
           <a href="https://myfood-mern.netlify.app" target="_blank" class="overlay-link" title="Live"><i class="fas fa-external-link-alt"></i></a>
         </div>
         <div class="project-body">
-          <div class="project-meta"><span class="project-cat">Full Stack · MERN</span></div>
+          <div class="project-meta"><span class="project-cat">Full Stack Â· MERN</span></div>
           <h3 class="project-title">myFood MERN</h3>
-          <p class="project-desc">Full-stack food delivery app — browse items, manage cart, order history, auth. Live on Netlify with Node/Express/MongoDB backend.</p>
+          <p class="project-desc">Full-stack food delivery app â browse items, manage cart, order history, auth. Live on Netlify with Node/Express/MongoDB backend.</p>
           <div class="project-stack"><span class="stack-tag">React</span><span class="stack-tag">Node.js</span><span class="stack-tag">Express</span><span class="stack-tag">MongoDB</span></div>
         </div>
       </div>
       <div class="project-card reveal delay-1">
-        <div class="project-img">🤖</div>
+        <div class="project-img">ð¤</div>
         <div class="project-overlay">
           <span class="overlay-link disabled" title="Private"><i class="fas fa-lock"></i></span>
         </div>
         <div class="project-body">
-          <div class="project-meta"><span class="project-cat">AI · Healthcare</span><span class="project-private"><i class="fas fa-lock"></i> Private</span></div>
+          <div class="project-meta"><span class="project-cat">AI Â· Healthcare</span><span class="project-private"><i class="fas fa-lock"></i> Private</span></div>
           <h3 class="project-title">Clinical RAG System</h3>
           <p class="project-desc">AI-powered clinical document retrieval system using Retrieval-Augmented Generation (RAG). Built for a US healthcare client with Python, FastAPI and LangChain.</p>
           <div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">FastAPI</span><span class="stack-tag">LangChain</span><span class="stack-tag">OpenAI</span></div>
         </div>
       </div>
       <div class="project-card reveal delay-2">
-        <div class="project-img">📊</div>
+        <div class="project-img">ð</div>
         <div class="project-overlay">
           <span class="overlay-link disabled" title="Private"><i class="fas fa-lock"></i></span>
         </div>
         <div class="project-body">
-          <div class="project-meta"><span class="project-cat">Performance · Dashboard</span><span class="project-private"><i class="fas fa-lock"></i> Private</span></div>
+          <div class="project-meta"><span class="project-cat">Performance Â· Dashboard</span><span class="project-private"><i class="fas fa-lock"></i> Private</span></div>
           <h3 class="project-title">AsgardBench</h3>
           <p class="project-desc">Performance benchmarking platform with frontend dashboard and backend data pipeline. Real-time metrics, charts, and reporting for engineering teams.</p>
           <div class="project-stack"><span class="stack-tag">TypeScript</span><span class="stack-tag">React</span><span class="stack-tag">Node.js</span><span class="stack-tag">HTML</span></div>
         </div>
       </div>
       <div class="project-card reveal delay-3">
-        <div class="project-img">🛍️</div>
+        <div class="project-img">ðï¸</div>
         <div class="project-overlay">
           <span class="overlay-link disabled" title="Private"><i class="fas fa-lock"></i></span>
         </div>
         <div class="project-body">
-          <div class="project-meta"><span class="project-cat">Shopify · E-commerce</span><span class="project-private"><i class="fas fa-lock"></i> Private</span></div>
+          <div class="project-meta"><span class="project-cat">Shopify Â· E-commerce</span><span class="project-private"><i class="fas fa-lock"></i> Private</span></div>
           <h3 class="project-title">Shopify MERN Template</h3>
           <p class="project-desc">Production-ready Shopify app template using React, Node.js, Express and MongoDB in a client/server structure. Used for multiple client apps.</p>
           <div class="project-stack"><span class="stack-tag">JavaScript</span><span class="stack-tag">React</span><span class="stack-tag">Node.js</span><span class="stack-tag">MongoDB</span></div>
@@ -540,7 +552,7 @@ footer{padding:2rem 0;border-top:1px solid var(--c-border);text-align:center}
     </div>
     <div class="skills-container">
       <div class="skills-left reveal-left">
-        <p class="skills-intro">I work across the full stack — from pixel-perfect UIs to backend APIs, mobile apps, DevOps, and AI pipelines. Here's what I use most:</p>
+        <p class="skills-intro">I work across the full stack â from pixel-perfect UIs to backend APIs, mobile apps, DevOps, and AI pipelines. Here's what I use most:</p>
         <div class="skill-bars">
           <div class="skill-bar-item"><div class="skill-bar-top"><span class="skill-name">TypeScript / JavaScript</span><span class="skill-pct">95%</span></div><div class="skill-track"><div class="skill-fill" data-pct="95"></div></div></div>
           <div class="skill-bar-item"><div class="skill-bar-top"><span class="skill-name">React / Next.js</span><span class="skill-pct">90%</span></div><div class="skill-track"><div class="skill-fill" data-pct="90"></div></div></div>
@@ -574,9 +586,9 @@ footer{padding:2rem 0;border-top:1px solid var(--c-border);text-align:center}
     <div class="timeline reveal">
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">2024 — Present</div>
+        <div class="timeline-date">2024 â Present</div>
         <div class="timeline-role">Full Stack Developer</div>
-        <div class="timeline-company">Staycold Solution · Surat, India</div>
+        <div class="timeline-company">Staycold Solution Â· Surat, India</div>
         <ul class="timeline-list">
           <li>Shipping a $8K React + React Native healthcare app for a US client, integrating clinical data pipelines</li>
           <li>Built a Clinical RAG System using Python, FastAPI, LangChain and OpenAI for intelligent document retrieval</li>
@@ -598,11 +610,11 @@ footer{padding:2rem 0;border-top:1px solid var(--c-border);text-align:center}
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">2022 — 2024</div>
+        <div class="timeline-date">2022 â 2024</div>
         <div class="timeline-role">Freelance Full Stack Developer</div>
-        <div class="timeline-company">Self-Employed · Remote</div>
+        <div class="timeline-company">Self-Employed Â· Remote</div>
         <ul class="timeline-list">
-          <li>Built myFood MERN — a full-stack food delivery app with authentication, cart management and order history</li>
+          <li>Built myFood MERN â a full-stack food delivery app with authentication, cart management and order history</li>
           <li>Developed lansync-studio, an open-source developer tooling platform in TypeScript</li>
           <li>Created job-os, a Kanban-style SaaS for job application tracking with full CRUD and auth</li>
           <li>Delivered weather, news and e-commerce web apps for clients using React and Node.js</li>
@@ -649,13 +661,13 @@ footer{padding:2rem 0;border-top:1px solid var(--c-border);text-align:center}
 
 <footer>
   <div class="container">
-    <p class="footer-text">Designed &amp; Built by <a href="https://github.com/Vaghani-Rushal" target="_blank">Rushal Vaghani</a> · 2026</p>
+    <p class="footer-text">Designed &amp; Built by <a href="https://github.com/Vaghani-Rushal" target="_blank">Rushal Vaghani</a> Â· 2026</p>
   </div>
 </footer>
 
 <button id="scroll-top" onclick="scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
 <script>
-// ── PARTICLE CANVAS ──
+// ââ PARTICLE CANVAS ââ
 (function(){
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
@@ -736,7 +748,7 @@ footer{padding:2rem 0;border-top:1px solid var(--c-border);text-align:center}
   document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
 })();
 
-// ── CURSOR ──
+// ââ CURSOR ââ
 const cursor = document.getElementById('cursor');
 const cursorRing = document.getElementById('cursor-ring');
 let cx = 0, cy = 0, rx = 0, ry = 0;
@@ -755,19 +767,19 @@ document.querySelectorAll('a,button,.bento-card,.project-card,.skill-chip').forE
   el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
 });
 
-// ── SCROLL PROGRESS ──
+// ââ SCROLL PROGRESS ââ
 window.addEventListener('scroll', () => {
   const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
   document.getElementById('scroll-progress').style.width = pct + '%';
 });
 
-// ── NAV SCROLL ──
+// ââ NAV SCROLL ââ
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
   document.getElementById('scroll-top').classList.toggle('visible', window.scrollY > 400);
 });
 
-// ── MOBILE MENU ──
+// ââ MOBILE MENU ââ
 function toggleMenu(){
   document.getElementById('nav-links').classList.toggle('open');
 }
@@ -775,7 +787,7 @@ function closeMenu(){
   document.getElementById('nav-links').classList.remove('open');
 }
 
-// ── TYPEWRITER ──
+// ââ TYPEWRITER ââ
 const roles = ['Senior Full Stack Developer','React & Node.js Expert','React Native Developer','AI / LangChain Engineer','Shopify App Developer','TypeScript Craftsman'];
 let ri = 0, ci = 0, del = false, typeEl = document.getElementById('typed-role');
 function type(){
@@ -785,15 +797,15 @@ function type(){
 }
 type();
 
-// ── INTERSECTION OBSERVER ──
+// ââ INTERSECTION OBSERVER ââ
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
   });
-}, { threshold: 0.02, rootMargin: '150px 0px 150px 0px' });
+}, { threshold: 0.02, rootMargin: '300px 0px 300px 0px' });
 document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => { io.observe(el); const r=el.getBoundingClientRect(); if(r.top < window.innerHeight+200) el.classList.add('in'); });
 
-// ── SKILL BARS ──
+// ââ SKILL BARS ââ
 const barIo = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if(e.isIntersecting){
@@ -806,7 +818,7 @@ const barIo = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 document.querySelectorAll('.skill-bars').forEach(el => barIo.observe(el));
 
-// ── SMOOTH SCROLL ──
+// ââ SMOOTH SCROLL ââ
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
@@ -815,7 +827,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// ── 3D TILT on cards ──
+// ââ 3D TILT on cards ââ
 document.querySelectorAll('.project-card,.bento-card').forEach(card => {
   card.addEventListener('mousemove', e => {
     const rect = card.getBoundingClientRect();
