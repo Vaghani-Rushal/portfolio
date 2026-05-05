@@ -1,0 +1,34 @@
+# robots.txt for https://rushal-vaghani.netlify.app/
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+
+# Major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# AI crawlers - allow indexing
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Sitemap location
+Sitemap: https://rushal-vaghani.netlify.app/sitemap.xml
+
+# Crawl delay courtesy
+Crawl-delay: 1
