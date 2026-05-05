@@ -1,12 +1,76 @@
+/* Skills Section */
+.skills {
+  padding: 6rem 0;
+}
+
+.skills .section__title {
+  margin-bottom: 3rem;
+}
+
 .skills__list {
-  max-width: 450px;
-  width: 95%;
-  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
+  gap: 0.7rem;
   justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .skills__list-item {
-  margin: 0.5em;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.85rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  cursor: default;
+  transition: all 0.25s ease;
+  letter-spacing: 0.01em;
+}
+
+.skills__list-item:hover {
+  background: rgba(139, 92, 246, 0.1);
+  color: #a78bfa;
+  border-color: rgba(139, 92, 246, 0.35);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.15);
+}
+
+/* Staggered animation via nth-child */
+.skills__list-item:nth-child(1)  { animation-delay: 0.05s; }
+.skills__list-item:nth-child(2)  { animation-delay: 0.10s; }
+.skills__list-item:nth-child(3)  { animation-delay: 0.15s; }
+.skills__list-item:nth-child(4)  { animation-delay: 0.20s; }
+.skills__list-item:nth-child(5)  { animation-delay: 0.25s; }
+.skills__list-item:nth-child(6)  { animation-delay: 0.30s; }
+.skills__list-item:nth-child(7)  { animation-delay: 0.35s; }
+.skills__list-item:nth-child(8)  { animation-delay: 0.40s; }
+.skills__list-item:nth-child(9)  { animation-delay: 0.45s; }
+.skills__list-item:nth-child(10) { animation-delay: 0.50s; }
+.skills__list-item:nth-child(11) { animation-delay: 0.55s; }
+.skills__list-item:nth-child(12) { animation-delay: 0.60s; }
+.skills__list-item:nth-child(13) { animation-delay: 0.65s; }
+.skills__list-item:nth-child(14) { animation-delay: 0.70s; }
+.skills__list-item:nth-child(15) { animation-delay: 0.75s; }
+.skills__list-item:nth-child(16) { animation-delay: 0.80s; }
+.skills__list-item:nth-child(17) { animation-delay: 0.85s; }
+.skills__list-item:nth-child(18) { animation-delay: 0.90s; }
+.skills__list-item:nth-child(19) { animation-delay: 0.95s; }
+.skills__list-item:nth-child(20) { animation-delay: 1.00s; }
+
+/* Light theme */
+.light .skills__list-item {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.08);
+  color: #475569;
+}
+
+.light .skills__list-item:hover {
+  background: rgba(139, 92, 246, 0.08);
+  color: #7c3aed;
+  border-color: rgba(139, 92, 246, 0.3);
 }
