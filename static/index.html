@@ -121,7 +121,7 @@ section{position:relative;z-index:1}
 @keyframes floatAnim{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-20px) scale(1.05)}}
 
 /* ── ABOUT BENTO GRID ── */
-#about{padding:8rem 0}
+#about{padding:5rem 0}
 .bento-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:1.25rem}
 .bento-card{background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--r);padding:1.75rem;position:relative;overflow:hidden;transition:all .4s var(--ease);cursor:default}
 .bento-card::before{content:'';position:absolute;inset:0;background:var(--grad-main);opacity:0;transition:opacity .4s var(--ease);border-radius:var(--r)}
@@ -149,7 +149,7 @@ section{position:relative;z-index:1}
 .bento-card:hover .card-glow{opacity:1}
 
 /* ── PROJECTS ── */
-#projects{padding:8rem 0}
+#projects{padding:5rem 0}
 .section-header{text-align:center;margin-bottom:5rem}
 .section-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.15em;color:var(--c-purple2);margin-bottom:1rem;padding:.35rem .9rem;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);border-radius:var(--r-full)}
 .section-title{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;letter-spacing:-.03em}
@@ -176,7 +176,7 @@ section{position:relative;z-index:1}
 .stack-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;padding:.2rem .55rem;border-radius:var(--r-full);background:rgba(6,182,212,.08);color:var(--c-cyan);border:1px solid rgba(6,182,212,.18)}
 
 /* ── SKILLS ── */
-#skills{padding:8rem 0}
+#skills{padding:5rem 0}
 .skills-container{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
 .skills-left{}
 .skills-intro{font-size:1.05rem;color:var(--c-muted);line-height:1.8;margin-bottom:2rem}
@@ -195,7 +195,7 @@ section{position:relative;z-index:1}
 .skill-chip:hover{background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.35);color:var(--c-purple2);transform:translateY(-2px) scale(1.04);box-shadow:0 4px 15px rgba(139,92,246,.15)}
 
 /* ── EXPERIENCE ── */
-#experience{padding:8rem 0}
+#experience{padding:5rem 0}
 .timeline{position:relative;padding-left:2rem}
 .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--c-purple),var(--c-cyan),transparent);border-radius:1px}
 .timeline-item{position:relative;padding-left:2rem;padding-bottom:3.5rem}
@@ -211,7 +211,7 @@ section{position:relative;z-index:1}
 .timeline-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;padding:.2rem .6rem;border-radius:var(--r-full);background:rgba(139,92,246,.08);color:var(--c-purple2);border:1px solid rgba(139,92,246,.15)}
 
 /* ── CONTACT ── */
-#contact{padding:8rem 0}
+#contact{padding:5rem 0}
 .contact-card{background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(6,182,212,.05));border:1px solid rgba(139,92,246,.2);border-radius:24px;padding:5rem 4rem;text-align:center;position:relative;overflow:hidden}
 .contact-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(139,92,246,.12),transparent 60%);pointer-events:none;border-radius:50%}
 .contact-title{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;letter-spacing:-.04em;margin-bottom:1rem}
@@ -790,8 +790,8 @@ const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
   });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => io.observe(el));
+}, { threshold: 0.02, rootMargin: '150px 0px 150px 0px' });
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => { io.observe(el); const r=el.getBoundingClientRect(); if(r.top < window.innerHeight+200) el.classList.add('in'); });
 
 // ── SKILL BARS ──
 const barIo = new IntersectionObserver((entries) => {
