@@ -395,6 +395,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     return new Promise(function(resolve){
       var c = $("#curtain"), l = $("#curtainLabel");
       c.classList.remove("out");
+      c.classList.remove("in");
+      l.classList.remove("show");
       l.innerHTML = "";
       var chars = (label||"").split("");
       chars.forEach(function(ch,i){
@@ -404,6 +406,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
         span.textContent = ch === " " ? "\u00A0" : ch;
         l.appendChild(span);
       });
+      void c.offsetWidth;
       requestAnimationFrame(function(){
         c.classList.add("in");
         setTimeout(function(){ l.classList.add("show"); }, 80);
@@ -415,12 +418,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     return new Promise(function(resolve){
       var c = $("#curtain"), l = $("#curtainLabel");
       l.classList.remove("show");
-      c.classList.remove("in");
-      c.classList.add("out");
-      setTimeout(function(){ resolve(); }, 700);
+      setTimeout(function(){
+        c.classList.remove("in");
+        c.classList.add("out");
+        setTimeout(function(){
+          c.classList.remove("out");
+          resolve();
+        }, 700);
+      }, 200);
     });
   }
-
   function setActive(route){
     $$(".page").forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-route") === route); });
     $$('a[data-link]').forEach(function(a){
