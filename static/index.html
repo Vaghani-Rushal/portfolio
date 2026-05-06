@@ -584,9 +584,160 @@ footer a:hover{color:var(--ink)}
   transition:opacity .35s var(--ease-out),transform .45s var(--ease-out);
 }
 .curtain-label.in{opacity:1;transform:translateY(0)}
+
+/* ==== Scrolling animated background ==== */
+.bg-fx{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  overflow:hidden;
+  isolation:isolate;
+  contain:strict;
+}
+.bg-fx::before{
+  /* Subtle dot grid that drifts */
+  content:"";
+  position:absolute;
+  inset:-10%;
+  background-image:
+    radial-gradient(circle at center,var(--bg-dot,rgba(255,255,255,.07)) 1px,transparent 1.5px);
+  background-size:32px 32px;
+  background-position:0 0;
+  opacity:.55;
+  transform:translate3d(0,0,0);
+  will-change:transform,opacity;
+  mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 40%,transparent 90%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 40%,transparent 90%);
+}
+.bg-fx::after{
+  /* Faint grain to add texture */
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg,transparent 0%,var(--bg-veil,rgba(0,0,0,.18)) 100%);
+  mix-blend-mode:multiply;
+  opacity:.7;
+}
+[data-theme="light"] .bg-fx::after{
+  background:linear-gradient(180deg,transparent 0%,var(--bg-veil,rgba(20,20,40,.05)) 100%);
+  mix-blend-mode:normal;
+}
+[data-theme="light"] .bg-fx::before{
+  --bg-dot:rgba(60,60,120,.10);
+}
+
+.bg-canvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  filter:saturate(1.05);
+}
+
+/* Decorative blurred gradient orbs (CSS fallback + always-on layer) */
+.bg-orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(70px);
+  opacity:.55;
+  will-change:transform;
+  transform:translate3d(0,0,0);
+  pointer-events:none;
+}
+.bg-orb.o1{
+  width:42vw;height:42vw;
+  left:-8vw;top:-6vw;
+  background:radial-gradient(circle at 30% 30%,var(--orb-1,#6366f1) 0%,transparent 65%);
+}
+.bg-orb.o2{
+  width:36vw;height:36vw;
+  right:-6vw;top:18vh;
+  background:radial-gradient(circle at 70% 30%,var(--orb-2,#818cf8) 0%,transparent 65%);
+  opacity:.45;
+}
+.bg-orb.o3{
+  width:50vw;height:50vw;
+  left:8vw;top:62vh;
+  background:radial-gradient(circle at 50% 50%,var(--orb-3,#a5b4fc) 0%,transparent 65%);
+  opacity:.32;
+}
+.bg-orb.o4{
+  width:30vw;height:30vw;
+  right:10vw;top:90vh;
+  background:radial-gradient(circle at 50% 50%,var(--orb-4,#4f46e5) 0%,transparent 65%);
+  opacity:.38;
+}
+
+[data-theme="dark"] .bg-fx{
+  --orb-1:#6366f1;
+  --orb-2:#818cf8;
+  --orb-3:#4f46e5;
+  --orb-4:#a5b4fc;
+}
+[data-theme="light"] .bg-fx{
+  --orb-1:#a5b4fc;
+  --orb-2:#c7d2fe;
+  --orb-3:#818cf8;
+  --orb-4:#e0e7ff;
+}
+[data-theme="light"] .bg-orb{opacity:.42;filter:blur(80px)}
+[data-theme="light"] .bg-orb.o3{opacity:.28}
+[data-theme="light"] .bg-orb.o4{opacity:.30}
+
+/* Soft scanline / aurora overlay that drifts with scroll */
+.bg-aurora{
+  position:absolute;
+  inset:-20% -10%;
+  background:
+    conic-gradient(from var(--aur-angle,180deg) at 50% 50%,
+      transparent 0deg,
+      var(--aur-1,rgba(99,102,241,.18)) 60deg,
+      transparent 120deg,
+      var(--aur-2,rgba(129,140,248,.15)) 200deg,
+      transparent 260deg,
+      var(--aur-3,rgba(79,70,229,.16)) 320deg,
+      transparent 360deg);
+  filter:blur(60px);
+  opacity:.55;
+  mix-blend-mode:screen;
+  transform:translate3d(0,var(--aur-y,0px),0) rotate(var(--aur-rot,0deg));
+  will-change:transform;
+}
+[data-theme="light"] .bg-aurora{
+  --aur-1:rgba(99,102,241,.10);
+  --aur-2:rgba(165,180,252,.10);
+  --aur-3:rgba(79,70,229,.08);
+  mix-blend-mode:multiply;
+  opacity:.5;
+}
+
+/* Vignette so content always reads cleanly */
+.bg-vignette{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 90% 70% at 50% 30%,transparent 50%,var(--bg) 100%);
+  pointer-events:none;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .bg-orb,.bg-aurora,.bg-canvas{transform:none!important;animation:none!important}
+}
 </style>
 </head>
 <body>
+<div class="bg-fx" id="bgFx" aria-hidden="true">
+  <canvas class="bg-canvas" id="bgCanvas"></canvas>
+  <div class="bg-aurora" id="bgAurora"></div>
+  <div class="bg-orb o1" id="bgOrb1"></div>
+  <div class="bg-orb o2" id="bgOrb2"></div>
+  <div class="bg-orb o3" id="bgOrb3"></div>
+  <div class="bg-orb o4" id="bgOrb4"></div>
+  <div class="bg-vignette"></div>
+</div>
+
 <div class="progress" id="progress"></div>
 <div class="curtain" id="curtain" aria-hidden="true"><div class="strip"></div><div class="strip"></div><div class="strip"></div><div class="strip"></div><div class="strip"></div></div>
 <div class="curtain-label" id="curtainLabel" aria-hidden="true">HOME</div>
@@ -1169,6 +1320,202 @@ footer a:hover{color:var(--ink)}
   } else {
     init();
   }
+})();
+</script>
+<script>
+/* === Animated scrolling background === */
+(function(){
+  var prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canvas = document.getElementById('bgCanvas');
+  var aurora = document.getElementById('bgAurora');
+  var fx = document.getElementById('bgFx');
+  var orbs = [
+    document.getElementById('bgOrb1'),
+    document.getElementById('bgOrb2'),
+    document.getElementById('bgOrb3'),
+    document.getElementById('bgOrb4')
+  ];
+  if(!canvas || !fx) return;
+
+  var ctx = canvas.getContext('2d', { alpha: true });
+  if(!ctx) return;
+
+  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+  var W = 0, H = 0;
+  var particles = [];
+  var scrollY = window.scrollY || 0;
+  var targetScroll = scrollY;
+  var smoothScroll = scrollY;
+  var mouseX = 0, mouseY = 0;
+  var hasMoved = false;
+
+  function getThemeColors(){
+    var theme = document.documentElement.getAttribute('data-theme') || 'dark';
+    if(theme === 'light'){
+      return {
+        dot: 'rgba(79, 70, 229, 0.55)',
+        line: 'rgba(99, 102, 241, 0.18)',
+        glow: 'rgba(129, 140, 248, 0.35)'
+      };
+    }
+    return {
+      dot: 'rgba(165, 180, 252, 0.85)',
+      line: 'rgba(129, 140, 248, 0.22)',
+      glow: 'rgba(99, 102, 241, 0.45)'
+    };
+  }
+  var theme = getThemeColors();
+
+  function resize(){
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = W * DPR;
+    canvas.height = H * DPR;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    initParticles();
+  }
+
+  function initParticles(){
+    var area = W * H;
+    var density = Math.min(80, Math.max(28, Math.floor(area / 22000)));
+    if(prefersReduce) density = 0;
+    particles = [];
+    for(var i=0; i<density; i++){
+      particles.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.18,
+        vy: (Math.random() - 0.5) * 0.18,
+        r: Math.random() * 1.6 + 0.6,
+        a: Math.random() * 0.6 + 0.4,
+        // depth factor for parallax (0.3 = far, 1.2 = near)
+        z: Math.random() * 0.9 + 0.3
+      });
+    }
+  }
+
+  function step(){
+    // Smooth follow scroll
+    smoothScroll += (targetScroll - smoothScroll) * 0.08;
+
+    ctx.clearRect(0, 0, W, H);
+
+    var maxDist = 130;
+    var maxDistSq = maxDist * maxDist;
+
+    // Subtle scroll-driven offset
+    var scrollOffset = (smoothScroll * 0.05) % H;
+
+    // Update and draw particles
+    for(var i=0; i<particles.length; i++){
+      var p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Wrap around edges
+      if(p.x < -10) p.x = W + 10;
+      else if(p.x > W + 10) p.x = -10;
+      if(p.y < -10) p.y = H + 10;
+      else if(p.y > H + 10) p.y = -10;
+
+      // Parallax y from scroll
+      var py = p.y - (scrollOffset * p.z * 0.4);
+      // Wrap py into visible band
+      py = ((py % H) + H) % H;
+
+      // Mouse repel — gentle
+      if(hasMoved){
+        var dxm = p.x - mouseX;
+        var dym = py - mouseY;
+        var dm = dxm*dxm + dym*dym;
+        if(dm < 12000 && dm > 0){
+          var f = (1 - dm/12000) * 0.6;
+          p.x += (dxm/Math.sqrt(dm)) * f;
+        }
+      }
+
+      // Draw glow
+      var alpha = p.a * (0.4 + p.z * 0.6);
+      ctx.beginPath();
+      ctx.arc(p.x, py, p.r * p.z, 0, Math.PI * 2);
+      ctx.fillStyle = theme.dot.replace(/[\d.]+\)$/, alpha.toFixed(2)+')');
+      ctx.fill();
+
+      // Connect to nearby particles
+      for(var j=i+1; j<particles.length; j++){
+        var q = particles[j];
+        var qy = q.y - (scrollOffset * q.z * 0.4);
+        qy = ((qy % H) + H) % H;
+        var dx = p.x - q.x;
+        var dy = py - qy;
+        var d2 = dx*dx + dy*dy;
+        if(d2 < maxDistSq){
+          var lineAlpha = (1 - d2/maxDistSq) * 0.18;
+          ctx.beginPath();
+          ctx.moveTo(p.x, py);
+          ctx.lineTo(q.x, qy);
+          ctx.strokeStyle = theme.line.replace(/[\d.]+\)$/, lineAlpha.toFixed(3)+')');
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Aurora rotation tied to scroll
+    if(aurora){
+      var rot = (smoothScroll * 0.04) % 360;
+      var ay = Math.sin(smoothScroll * 0.001) * 30;
+      aurora.style.setProperty('--aur-rot', rot + 'deg');
+      aurora.style.setProperty('--aur-y', ay + 'px');
+    }
+
+    // Orbs subtle parallax
+    if(orbs[0]){
+      var s = smoothScroll;
+      var t = performance.now() * 0.00015;
+      orbs[0].style.transform = 'translate3d(' + Math.sin(t)*20 + 'px,' + (s*-0.08) + 'px,0)';
+      orbs[1].style.transform = 'translate3d(' + Math.cos(t*1.3)*25 + 'px,' + (s*-0.14) + 'px,0)';
+      orbs[2].style.transform = 'translate3d(' + Math.sin(t*0.8)*30 + 'px,' + (s*-0.20) + 'px,0)';
+      orbs[3].style.transform = 'translate3d(' + Math.cos(t*1.1)*22 + 'px,' + (s*-0.26) + 'px,0)';
+    }
+
+    rafId = requestAnimationFrame(step);
+  }
+
+  var rafId = 0;
+  function start(){ if(!rafId) rafId = requestAnimationFrame(step); }
+  function stop(){ if(rafId){ cancelAnimationFrame(rafId); rafId = 0; } }
+
+  // Visibility-aware: pause when tab hidden
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden) stop(); else start();
+  });
+
+  window.addEventListener('resize', function(){
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    resize();
+  }, { passive: true });
+
+  window.addEventListener('scroll', function(){
+    targetScroll = window.scrollY || window.pageYOffset || 0;
+  }, { passive: true });
+
+  window.addEventListener('mousemove', function(e){
+    hasMoved = true;
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  }, { passive: true });
+
+  // Watch theme changes
+  var mo = new MutationObserver(function(){
+    theme = getThemeColors();
+  });
+  mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  resize();
+  start();
 })();
 </script>
 </body>
