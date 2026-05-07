@@ -556,7 +556,7 @@ footer .row{display:flex;gap:18px}
 footer a:hover{color:var(--ink)}
 
 /* CURTAIN */
-.curtain{position:fixed;inset:0;z-index:90;pointer-events:none;display:flex}
+.curtain{position:fixed;inset:0;z-index:90;pointer-events:none;display:none}
 .curtain .strip{
   flex:1;background:var(--curtain-bg);
   transform:translateY(-101%);
@@ -893,6 +893,195 @@ footer a:hover{color:var(--ink)}
     width:60%!important;
   }
 }
+
+/* v15: disable curtain entrance overlay */
+.curtain,.curtain-label,.curtain.in,.curtain-label.in,.curtain.out{display:none!important;visibility:hidden!important;opacity:0!important}
+
+/* ===== v15 interactive bg + page animations ===== */
+
+.bg-cursor{
+  position:absolute;
+  width:380px;height:380px;
+  border-radius:50%;
+  pointer-events:none;
+  background:radial-gradient(circle at center,
+    color-mix(in srgb,var(--accent) 28%,transparent) 0%,
+    color-mix(in srgb,var(--accent) 12%,transparent) 25%,
+    transparent 65%);
+  filter:blur(20px);
+  transform:translate3d(-50%,-50%,0);
+  left:0;top:0;
+  opacity:0;
+  transition:opacity .5s var(--ease-out);
+  mix-blend-mode:screen;
+  will-change:transform,opacity;
+}
+[data-theme="light"] .bg-cursor{
+  mix-blend-mode:multiply;
+  background:radial-gradient(circle at center,
+    color-mix(in srgb,var(--accent) 18%,transparent) 0%,
+    color-mix(in srgb,var(--accent) 8%,transparent) 25%,
+    transparent 65%);
+}
+.bg-cursor.show{opacity:.85}
+
+.bg-ripples{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+.bg-ripples .ripple{
+  position:absolute;
+  width:8px;height:8px;
+  border-radius:50%;
+  border:1.5px solid color-mix(in srgb,var(--accent) 70%,transparent);
+  transform:translate3d(-50%,-50%,0);
+  pointer-events:none;
+  animation:rippleOut 1.4s cubic-bezier(.22,.61,.36,1) 1 forwards;
+  mix-blend-mode:screen;
+}
+[data-theme="light"] .bg-ripples .ripple{
+  mix-blend-mode:multiply;
+  border-color:color-mix(in srgb,var(--accent) 50%,transparent);
+}
+@keyframes rippleOut{
+  0%{
+    width:8px;height:8px;
+    opacity:.95;
+    border-width:2px;
+  }
+  60%{opacity:.55}
+  100%{
+    width:520px;height:520px;
+    opacity:0;
+    border-width:.5px;
+  }
+}
+
+/* === Page-specific entrance animations (re-fired per route) === */
+
+/* Generic blur-in */
+.blur-in{
+  opacity:0;
+  filter:blur(14px);
+  transform:translateY(28px) scale(.98);
+  transition:opacity .85s var(--ease-out),
+             filter .85s var(--ease-out),
+             transform .85s var(--ease-out);
+  transition-delay:calc(var(--i,0) * 80ms);
+}
+.blur-in.in{opacity:1;filter:blur(0);transform:none}
+
+/* Slide from left/right cycling */
+.slide-x{
+  opacity:0;
+  transform:translateX(var(--from,-60px));
+  transition:opacity .85s var(--ease-out),transform .85s var(--ease-out);
+  transition-delay:calc(var(--i,0) * 100ms);
+}
+.slide-x.in{opacity:1;transform:translateX(0)}
+
+/* Pop reveal — for skill chips on About */
+.pop-in{
+  opacity:0;
+  transform:scale(.5) rotate(-6deg);
+  transition:opacity .55s var(--ease-out),transform .65s cubic-bezier(.34,1.56,.64,1);
+  transition-delay:calc(var(--i,0) * 35ms);
+}
+.pop-in.in{opacity:1;transform:scale(1) rotate(0)}
+
+/* Flip-up reveal — for project cards on Work page */
+.flip-up{
+  opacity:0;
+  transform:perspective(800px) rotateX(18deg) translateY(40px);
+  transform-origin:50% 100%;
+  transition:opacity .9s var(--ease-out),transform .9s var(--ease-out);
+  transition-delay:calc(var(--i,0) * 130ms);
+}
+.flip-up.in{opacity:1;transform:perspective(800px) rotateX(0) translateY(0)}
+
+/* Timeline entry — alternating slide for Experience */
+.timeline-row{
+  opacity:0;
+  transform:translateX(var(--from,40px));
+  transition:opacity .8s var(--ease-out),transform .8s var(--ease-out);
+  transition-delay:calc(var(--i,0) * 110ms);
+}
+.timeline-row.in{opacity:1;transform:translateX(0)}
+
+/* Vertical line draw for timeline rail */
+.timeline-rail{
+  position:relative;
+}
+.timeline-rail::before{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:2px;
+  background:linear-gradient(180deg,transparent,var(--accent),transparent);
+  opacity:.0;
+  transform:scaleY(0);
+  transform-origin:0 0;
+  transition:opacity .6s var(--ease-out),transform 1.6s cubic-bezier(.22,.61,.36,1);
+}
+.timeline-rail.in::before{opacity:.6;transform:scaleY(1)}
+
+/* Card stack lift on hover for project tiles */
+.tilt-card{
+  transition:transform .35s var(--ease-out),box-shadow .35s var(--ease-out);
+}
+.tilt-card:hover{
+  transform:translateY(-6px) rotate(.4deg);
+}
+
+/* Glow border on hover for testimonial / quote */
+.glow-border{
+  position:relative;
+}
+.glow-border::after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  padding:1px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2),transparent);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:0;
+  transition:opacity .4s var(--ease-out);
+  pointer-events:none;
+}
+.glow-border:hover::after{opacity:1}
+
+/* Subtle scale + accent on links inside cards */
+.contact-card:hover,.service-card:hover{
+  background:color-mix(in srgb,var(--accent) 4%,var(--bg-card));
+}
+
+/* Magnetic-feeling button underline */
+.magnet-btn{position:relative;overflow:hidden}
+.magnet-btn::after{
+  content:"";
+  position:absolute;left:0;bottom:0;
+  width:100%;height:1.5px;
+  background:var(--accent);
+  transform:scaleX(0);
+  transform-origin:right center;
+  transition:transform .45s var(--ease-out);
+}
+.magnet-btn:hover::after{
+  transform:scaleX(1);
+  transform-origin:left center;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .blur-in,.slide-x,.pop-in,.flip-up,.timeline-row,.timeline-rail::before,.bg-cursor,.bg-ripples .ripple{
+    transition:none!important;animation:none!important;
+    transform:none!important;opacity:1!important;filter:none!important;
+  }
+}
 </style>
 </head>
 <body>
@@ -903,6 +1092,8 @@ footer a:hover{color:var(--ink)}
   <div class="bg-orb o2" id="bgOrb2"></div>
   <div class="bg-orb o3" id="bgOrb3"></div>
   <div class="bg-orb o4" id="bgOrb4"></div>
+  <div class="bg-cursor" id="bgCursor" aria-hidden="true"></div>
+  <div class="bg-ripples" id="bgRipples" aria-hidden="true"></div>
   <div class="bg-vignette"></div>
 </div>
 
@@ -1598,9 +1789,14 @@ footer a:hover{color:var(--ink)}
         var dxm = p.x - mouseX;
         var dym = py - mouseY;
         var dm = dxm*dxm + dym*dym;
-        if(dm < 12000 && dm > 0){
-          var f = (1 - dm/12000) * 0.6;
-          p.x += (dxm/Math.sqrt(dm)) * f;
+        if(dm < 28000 && dm > 0){
+          var d = Math.sqrt(dm);
+          var f = (1 - dm/28000);
+          // repel stronger for near, attract subtly for medium
+          var dirX = dxm/d, dirY = dym/d;
+          // mostly repel but mix in slight tangential drift to feel alive
+          p.x += dirX * f * 1.6;
+          p.y += dirY * f * 0.6;
         }
       }
 
@@ -1844,6 +2040,167 @@ footer a:hover{color:var(--ink)}
       setTimeout(init, 200);
     }
   });
+})();
+</script>
+<script>
+/* === v15 interactive bg + per-page animations === */
+(function(){
+  var prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ========= Cursor halo & ripples ========= */
+  var cursor = document.getElementById('bgCursor');
+  var ripples = document.getElementById('bgRipples');
+  var fx = document.getElementById('bgFx');
+  if(cursor && !prefersReduce){
+    var cx = window.innerWidth/2, cy = window.innerHeight/2;
+    var tx = cx, ty = cy;
+    var moved = false;
+    window.addEventListener('mousemove', function(e){
+      tx = e.clientX; ty = e.clientY;
+      if(!moved){ moved = true; cursor.classList.add('show'); }
+    }, { passive: true });
+    window.addEventListener('mouseleave', function(){ cursor.classList.remove('show'); }, { passive: true });
+    window.addEventListener('mouseenter', function(){ if(moved) cursor.classList.add('show'); }, { passive: true });
+
+    function tickCursor(){
+      cx += (tx - cx) * 0.14;
+      cy += (ty - cy) * 0.14;
+      cursor.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0) translate(-50%,-50%)';
+      requestAnimationFrame(tickCursor);
+    }
+    requestAnimationFrame(tickCursor);
+  }
+
+  /* Click-anywhere ripple */
+  if(ripples && !prefersReduce){
+    document.addEventListener('click', function(e){
+      // Skip if clicking on interactive controls — feels weird otherwise
+      if(e.target.closest('a,button,input,textarea,select,[role="button"]')) return;
+      var r = document.createElement('div');
+      r.className = 'ripple';
+      r.style.left = e.clientX + 'px';
+      r.style.top = e.clientY + 'px';
+      ripples.appendChild(r);
+      setTimeout(function(){ if(r.parentNode) r.parentNode.removeChild(r); }, 1500);
+    }, { passive: true });
+  }
+
+  /* Boost canvas particle interaction (stronger pull + repel) */
+  /* The base particle simulation already uses mouse position; we just amplify by   */
+  /* setting CSS variable that the canvas script reads is overkill. Instead, expose */
+  /* mouseX/Y on window and the existing canvas reads window mouse via its handler. */
+
+  /* ========= Per-page animation orchestrator ========= */
+  function tagAndObserve(){
+    if(prefersReduce) return;
+
+    // ABOUT page: skill chips pop, paragraphs blur-in
+    var about = document.querySelector('#page-about-mount,.about,#/about,[data-page="about"]');
+    var aboutSection = document.querySelector('main section.about,main .about-section,main .about-grid');
+    // simpler: find by current hash
+    var hash = location.hash || '#/';
+
+    document.querySelectorAll('main .chip,main .badge,main .pill,main .tag-pill').forEach(function(c, i){
+      if(!c.classList.contains('pop-in')){
+        c.classList.add('pop-in');
+        c.style.setProperty('--i', i);
+      }
+    });
+
+    // WORK page: project rows flip up
+    document.querySelectorAll('main .project,main .project-card,main .work-card,.proj-card,.proj-row').forEach(function(c, i){
+      if(!c.classList.contains('flip-up')){
+        c.classList.add('flip-up','tilt-card');
+        c.style.setProperty('--i', i);
+      }
+    });
+
+    // EXPERIENCE page: timeline rows slide alternating
+    document.querySelectorAll('main .timeline-item,main .exp-item,main .experience-item,.timeline > *,.exp-row').forEach(function(c, i){
+      if(!c.classList.contains('timeline-row')){
+        c.classList.add('timeline-row');
+        c.style.setProperty('--i', i);
+        c.style.setProperty('--from', (i % 2 === 0 ? '60px' : '-60px'));
+      }
+    });
+
+    // Timeline rail (the parent) — draw line
+    document.querySelectorAll('main .timeline,main .exp-list,.timeline-rail').forEach(function(c){
+      if(!c.classList.contains('timeline-rail')) c.classList.add('timeline-rail');
+    });
+
+    // Generic: section paragraphs / container children get blur-in (fallback)
+    document.querySelectorAll('main section p,main section h3,main section li,main section blockquote').forEach(function(c, i){
+      if(!c.classList.contains('blur-in') && !c.classList.contains('split-words') && !c.classList.contains('split-chars')){
+        c.classList.add('blur-in');
+        c.style.setProperty('--i', Math.min(i, 8));
+      }
+    });
+
+    // Glow border on testimonial cards
+    document.querySelectorAll('main .testimonial,main .quote,main blockquote,main .review-card').forEach(function(c){
+      c.classList.add('glow-border');
+    });
+
+    // Magnet-btn for any anchor button inside main
+    document.querySelectorAll('main .btn,main .button,main a.cta,main a[role="button"]').forEach(function(c){
+      c.classList.add('magnet-btn');
+    });
+
+    // Set up shared observer
+    if(!window.__v15IO){
+      window.__v15IO = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('in');
+            window.__v15IO.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+    }
+    document.querySelectorAll('.blur-in:not(.in),.slide-x:not(.in),.pop-in:not(.in),.flip-up:not(.in),.timeline-row:not(.in),.timeline-rail:not(.in)').forEach(function(el){
+      window.__v15IO.observe(el);
+    });
+  }
+
+  function initOrRefresh(){
+    setTimeout(tagAndObserve, 50);
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', initOrRefresh);
+  } else {
+    initOrRefresh();
+  }
+  window.addEventListener('hashchange', function(){ setTimeout(initOrRefresh, 250); });
+
+  /* ========= Disable curtain on initial load (and route changes) ========= */
+  var curtainEl = document.getElementById('curtain');
+  var curtainLabelEl = document.getElementById('curtainLabel');
+  if(curtainEl){
+    curtainEl.style.display = 'none';
+    curtainEl.classList.remove('in','out');
+  }
+  if(curtainLabelEl){
+    curtainLabelEl.style.display = 'none';
+    curtainLabelEl.classList.remove('in');
+  }
+  // Watch for class additions and instantly remove them (in case route handler tries)
+  if(curtainEl){
+    new MutationObserver(function(){
+      if(curtainEl.classList.contains('in') || curtainEl.classList.contains('out')){
+        curtainEl.classList.remove('in','out');
+      }
+    }).observe(curtainEl, {attributes:true, attributeFilter:['class']});
+  }
+  if(curtainLabelEl){
+    new MutationObserver(function(){
+      if(curtainLabelEl.classList.contains('in')){
+        curtainLabelEl.classList.remove('in');
+      }
+    }).observe(curtainLabelEl, {attributes:true, attributeFilter:['class']});
+  }
+
 })();
 </script>
 </body>
