@@ -2159,17 +2159,6 @@ footer a:hover{color:var(--ink)}
   }
   window.addEventListener('hashchange', function(){ setTimeout(initOrRefresh, 250); });
 
-  /* ========= Disable curtain on initial load (and route changes) ========= */
-  var curtainEl = document.getElementById('curtain');
-  var curtainLabelEl = document.getElementById('curtainLabel');
-  if(curtainEl){
-    curtainEl.style.display = 'none';
-    curtainEl.classList.remove('in','out');
-  }
-  if(curtainLabelEl){
-    curtainLabelEl.style.display = 'none';
-    curtainLabelEl.classList.remove('in');
-  }
 
 
 
