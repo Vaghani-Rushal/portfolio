@@ -899,31 +899,6 @@ footer a:hover{color:var(--ink)}
 
 /* ===== v15 interactive bg + page animations ===== */
 
-.bg-cursor{
-  position:absolute;
-  width:380px;height:380px;
-  border-radius:50%;
-  pointer-events:none;
-  background:radial-gradient(circle at center,
-    color-mix(in srgb,var(--accent) 28%,transparent) 0%,
-    color-mix(in srgb,var(--accent) 12%,transparent) 25%,
-    transparent 65%);
-  filter:blur(20px);
-  transform:translate3d(-50%,-50%,0);
-  left:0;top:0;
-  opacity:0;
-  transition:opacity .5s var(--ease-out);
-  mix-blend-mode:screen;
-  will-change:transform,opacity;
-}
-[data-theme="light"] .bg-cursor{
-  mix-blend-mode:multiply;
-  background:radial-gradient(circle at center,
-    color-mix(in srgb,var(--accent) 18%,transparent) 0%,
-    color-mix(in srgb,var(--accent) 8%,transparent) 25%,
-    transparent 65%);
-}
-.bg-cursor.show{opacity:.85}
 
 .bg-ripples{
   position:absolute;
@@ -1082,6 +1057,37 @@ footer a:hover{color:var(--ink)}
     transform:none!important;opacity:1!important;filter:none!important;
   }
 }
+
+/* v16: page entrance reveal (NOT bottom-to-top) */
+@keyframes pageEnterFade{
+  0%{opacity:0;transform:scale(1.022);filter:blur(8px)}
+  60%{opacity:1;filter:blur(0)}
+  100%{opacity:1;transform:scale(1);filter:blur(0)}
+}
+@keyframes pageEnterWash{
+  0%{opacity:.55;transform:translateY(-12%) scale(1.05)}
+  100%{opacity:0;transform:translateY(0) scale(1)}
+}
+.page-enter-active main#app{
+  animation:pageEnterFade .85s cubic-bezier(.2,.7,.2,1) both;
+  will-change:transform,opacity,filter;
+}
+.page-wash{
+  position:fixed;inset:0;z-index:88;pointer-events:none;
+  background:radial-gradient(120% 70% at 50% 0%,
+    color-mix(in srgb,var(--accent) 22%,transparent) 0%,
+    color-mix(in srgb,var(--accent) 8%,transparent) 35%,
+    transparent 70%);
+  opacity:0;mix-blend-mode:screen;
+  transform:translateY(-10%);
+  will-change:opacity,transform;
+}
+[data-theme="light"] .page-wash{mix-blend-mode:multiply}
+.page-wash.run{animation:pageEnterWash 1.05s cubic-bezier(.2,.7,.2,1) forwards}
+@media (prefers-reduced-motion: reduce){
+  .page-enter-active main#app{animation:none}
+  .page-wash.run{animation:none;opacity:0}
+}
 </style>
 </head>
 <body>
@@ -1092,7 +1098,6 @@ footer a:hover{color:var(--ink)}
   <div class="bg-orb o2" id="bgOrb2"></div>
   <div class="bg-orb o3" id="bgOrb3"></div>
   <div class="bg-orb o4" id="bgOrb4"></div>
-  <div class="bg-cursor" id="bgCursor" aria-hidden="true"></div>
   <div class="bg-ripples" id="bgRipples" aria-hidden="true"></div>
   <div class="bg-vignette"></div>
 </div>
@@ -2048,28 +2053,10 @@ footer a:hover{color:var(--ink)}
   var prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ========= Cursor halo & ripples ========= */
-  var cursor = document.getElementById('bgCursor');
+
   var ripples = document.getElementById('bgRipples');
   var fx = document.getElementById('bgFx');
-  if(cursor && !prefersReduce){
-    var cx = window.innerWidth/2, cy = window.innerHeight/2;
-    var tx = cx, ty = cy;
-    var moved = false;
-    window.addEventListener('mousemove', function(e){
-      tx = e.clientX; ty = e.clientY;
-      if(!moved){ moved = true; cursor.classList.add('show'); }
-    }, { passive: true });
-    window.addEventListener('mouseleave', function(){ cursor.classList.remove('show'); }, { passive: true });
-    window.addEventListener('mouseenter', function(){ if(moved) cursor.classList.add('show'); }, { passive: true });
 
-    function tickCursor(){
-      cx += (tx - cx) * 0.14;
-      cy += (ty - cy) * 0.14;
-      cursor.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0) translate(-50%,-50%)';
-      requestAnimationFrame(tickCursor);
-    }
-    requestAnimationFrame(tickCursor);
-  }
 
   /* Click-anywhere ripple */
   if(ripples && !prefersReduce){
@@ -2185,22 +2172,28 @@ footer a:hover{color:var(--ink)}
     curtainLabelEl.style.display = 'none';
     curtainLabelEl.classList.remove('in');
   }
-  // Watch for class additions and instantly remove them (in case route handler tries)
-  if(curtainEl){
-    new MutationObserver(function(){
-      if(curtainEl.classList.contains('in') || curtainEl.classList.contains('out')){
-        curtainEl.classList.remove('in','out');
-      }
-    }).observe(curtainEl, {attributes:true, attributeFilter:['class']});
-  }
-  if(curtainLabelEl){
-    new MutationObserver(function(){
-      if(curtainLabelEl.classList.contains('in')){
-        curtainLabelEl.classList.remove('in');
-      }
-    }).observe(curtainLabelEl, {attributes:true, attributeFilter:['class']});
-  }
 
+
+
+  /* v16 entrance reveal: replaces curtain bottom-to-top */
+  function runEntrance(){
+    if(prefersReduce) return;
+    document.documentElement.classList.add('page-enter-active');
+    var w = document.createElement('div');
+    w.className = 'page-wash';
+    document.body.appendChild(w);
+    requestAnimationFrame(function(){ w.classList.add('run'); });
+    setTimeout(function(){
+      document.documentElement.classList.remove('page-enter-active');
+      if(w && w.parentNode) w.parentNode.removeChild(w);
+    }, 1100);
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', runEntrance);
+  } else {
+    runEntrance();
+  }
+  window.addEventListener('hashchange', function(){ setTimeout(runEntrance, 30); });
 })();
 </script>
 </body>
