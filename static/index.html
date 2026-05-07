@@ -894,8 +894,6 @@ footer a:hover{color:var(--ink)}
   }
 }
 
-/* v15: disable curtain entrance overlay */
-.curtain,.curtain-label,.curtain.in,.curtain-label.in,.curtain.out{display:none!important;visibility:hidden!important;opacity:0!important}
 
 /* ===== v15 interactive bg + page animations ===== */
 
@@ -2193,7 +2191,6 @@ footer a:hover{color:var(--ink)}
   } else {
     runEntrance();
   }
-  window.addEventListener('hashchange', function(){ setTimeout(runEntrance, 30); });
 })();
 </script>
 </body>
