@@ -869,17 +869,6 @@ footer a:hover{color:var(--ink)}
   to{transform:translateY(-6px)}
 }
 
-/* Soft scroll-driven scale-up for hero badge (status pill) */
-.hero .tag.reveal{
-  transform-origin:left center;
-  transform:translateY(20px) scale(.92);
-  opacity:0;
-  transition:opacity .7s var(--ease-out),transform .7s var(--ease-out);
-}
-.hero .tag.reveal.in{
-  opacity:1;
-  transform:translateY(0) scale(1);
-}
 
 /* Enhanced hover on service-card */
 .service-card{
@@ -1740,75 +1729,9 @@ footer a:hover{color:var(--ink)}
   /* Apply split-text to all hero h1 segments and section h2's */
   function applySplits(){
     if(prefersReduce) return;
-    // Hero h1: split each text node into chars
-    var heroH1s = document.querySelectorAll('.hero h1');
-    heroH1s.forEach(function(h1){
-      // walk children: text nodes get split-chars, .grad gets split-chars too
-      // simpler: wrap each non-br text span and split
-      var fragments = h1.childNodes;
-      var newH1 = h1.cloneNode(false);
-      // Build new
-      var charIdx = 0;
-      function processNode(node, parent, isGrad){
-        if(node.nodeType === 3){
-          var txt = node.textContent;
-          for(var i=0; i<txt.length; i++){
-            var c = txt[i];
-            var span = document.createElement('span');
-            span.className = 'ch';
-            span.style.setProperty('--i', charIdx++);
-            span.textContent = c === ' ' ? '\u00a0' : c;
-            parent.appendChild(span);
-          }
-        } else if(node.nodeType === 1){
-          if(node.tagName === 'BR'){
-            parent.appendChild(node.cloneNode(false));
-          } else {
-            var clone = node.cloneNode(false);
-            parent.appendChild(clone);
-            for(var k=0; k<node.childNodes.length; k++){
-              processNode(node.childNodes[k], clone, true);
-            }
-          }
-        }
-      }
-      for(var j=0; j<fragments.length; j++){
-        processNode(fragments[j], newH1, false);
-      }
-      newH1.classList.add('split-chars');
-      h1.parentNode.replaceChild(newH1, h1);
-    });
-
-    // Section h2 -> split-words
-    var h2s = document.querySelectorAll('section h2');
-    h2s.forEach(function(h2){
-      // skip if has child elements (like .grad nested)
-      if(h2.children.length > 0){
-        // Iterate text nodes only
-        Array.from(h2.childNodes).forEach(function(n){
-          if(n.nodeType === 3 && n.textContent.trim()){
-            var wrap = document.createElement('span');
-            wrap.className = 'split-words';
-            var words = n.textContent.split(/(\s+)/);
-            var idx = 0;
-            words.forEach(function(w){
-              if(/^\s+$/.test(w)){
-                wrap.appendChild(document.createTextNode(w));
-              } else if(w.length){
-                var s = document.createElement('span');
-                s.className = 'w';
-                s.style.setProperty('--i', idx++);
-                s.textContent = w;
-                wrap.appendChild(s);
-              }
-            });
-            n.parentNode.replaceChild(wrap, n);
-          }
-        });
-      } else {
-        splitText(h2, 'words');
-      }
-    });
+    // Hero h1: skip auto-split (keep original visible) — section h2 only
+    // Section h2 -> use title-draw underline only (no split — safer)
+    // (intentionally simple)
   }
 
   /* Counter number animation */
@@ -1904,15 +1827,7 @@ footer a:hover{color:var(--ink)}
       io.observe(el);
     });
 
-    // Trigger hero h1 split-chars immediately on load (for above-the-fold visibility)
-    setTimeout(function(){
-      document.querySelectorAll('.hero .split-chars').forEach(function(el){
-        el.classList.add('in');
-      });
-      document.querySelectorAll('.hero .title-draw').forEach(function(el){
-        el.classList.add('in');
-      });
-    }, 100);
+    // (hero auto-trigger removed; hero stays as-is)
   }
 
   if(document.readyState === 'loading'){
